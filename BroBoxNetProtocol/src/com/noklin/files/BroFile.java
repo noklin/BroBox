@@ -1,8 +1,7 @@
 
 package com.noklin.files; 
  
-import java.io.File;
-import java.net.URI;
+import java.io.File; 
 
 
 /**
@@ -26,7 +25,7 @@ public class BroFile implements Comparable<Object>{
     public BroFile(File file, int partCount) { 
         this.name = file.getAbsolutePath();
         this.size = file.isFile() ? file.length() : 0;
-        this.partCount = partCount;
+        this.partCount = partCount == 0 ? 1 : partCount; //для скачивания пустых файлов количество должно быть > 0
         this.isDirectory = file.isDirectory();
     }
 

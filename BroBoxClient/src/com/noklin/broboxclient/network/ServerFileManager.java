@@ -28,8 +28,10 @@ public class ServerFileManager {
         File futureFile = new File(Config.downloadFolder + File.separator + Paths.get(bf.getName()).getFileName());
         File newFile = new File(Config.downloadFolder + File.separator + Paths.get(bf.getName() + "._bf").getFileName()); 
         if(futureFile.length() == 0 && newFile.createNewFile()){  
-            RandomAccessFile raf = new RandomAccessFile(newFile, "rw");
+            RandomAccessFile raf = new RandomAccessFile(newFile, "rw"); 
             boolean[] fileMap = new boolean[bf.getPartCount()];
+            if(fileMap.length == 0)
+                fileMap = new boolean[1];
             int counter = 0;
             raf.setLength(bf.getSize());
             try(Connection serverConnection = new SimpleConnection(Config.serverHost, Config.serverPort)){ 
